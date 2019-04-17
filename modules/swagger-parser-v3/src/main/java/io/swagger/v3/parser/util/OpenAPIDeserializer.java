@@ -2257,31 +2257,33 @@ public class OpenAPIDeserializer {
 
         //sets default value according to the schema type
         if(node.get("default")!= null) {
-            if(schema.getType().equals("array")) {
+            if("array".equals(schema.getType())) {
                 ArrayNode array = getArray("default", node, false, location, result);
                 if (array != null) {
                     schema.setDefault(array);
                 }
-            }else if(schema.getType().equals("string")) {
+            }else if("string".equals(schema.getType())) {
                 value = getString("default", node, false, location, result);
                 if (value != null) {
                     schema.setDefault(value);
                 }
-            }else if(schema.getType().equals("boolean")) {
+            }else if("boolean".equals(schema.getType())) {
                 bool = getBoolean("default", node, false, location, result);
                 if (bool != null) {
                     schema.setDefault(bool);
                 }
-            }else if(schema.getType().equals("object")) {
+            }else if("object".equals(schema.getType())) {
                 Object object = getObject("default", node, false, location, result);
                 if (object != null) {
                     schema.setDefault(object);
                 }
-            }else if(schema.getType().equals("number")) {
+            }else if("number".equals(schema.getType())) {
                 Integer number = getInteger("default", node, false, location, result);
                 if (number != null) {
                     schema.setDefault(number);
                 }
+            }else {
+                // Do something sensible here
             }
         }
 
